@@ -1,0 +1,39 @@
+.main-container {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+}
+
+.main-container .main-movie {
+  padding-top: 5rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main-container .button-container {
+  width: 100%;
+  top: 20%;
+}
+.main-container .button-container h1,
+.main-container .button-container p {
+  color: white;
+  padding: 0.5rem;
+}
+.main-container .button-container button {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  margin-left: 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.main-container .button-container .watch {
+  background: none;
+  color: white;
+}
+
+@media screen and (max-width:800px) {
+    .main-container{
+        background-size: contain;
+    }
+    
+}

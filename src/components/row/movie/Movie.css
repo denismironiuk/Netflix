@@ -1,0 +1,58 @@
+.movie{
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    padding: 0;
+    overflow: hidden;
+    
+}
+.movie-title{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    opacity: 0;
+    
+    
+   
+}
+.movie-title:hover{
+    opacity: 1;
+    background: rgba(0, 0 ,0, 0.8);
+}
+.movie-title p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    opacity: 100;
+    font-size: 2rem;
+    color: white;
+    
+}
+.movie-title .like{
+   
+
+
+}
+.movie-title .like svg{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 50px;
+    color: red;
+    border: none;
+   
+    z-index: 777;
+    opacity: 1;
+}
+.container img{
+display: block;
+width: 100%;
+height: auto;
+
+
+
+}

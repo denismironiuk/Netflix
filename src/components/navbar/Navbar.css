@@ -1,0 +1,28 @@
+.navbar-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+   
+
+}
+.navbar-container a{
+    text-decoration: none;
+}
+
+.navbar-container h1{
+    
+    color:red;
+}
+
+.navbar-container  button{
+border: none;
+background: red ;
+padding: 0.5rem ;
+border-radius: 5px;
+color:white
+}
+.navbar-container .signin-button{
+    background: none !important;
+
+}
