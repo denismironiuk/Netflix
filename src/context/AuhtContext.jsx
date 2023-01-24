@@ -4,43 +4,54 @@ import {createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuth
 import {setDoc,doc} from 'firebase/firestore'
 const AuthContext=createContext()
 
+// AuthContextProvider component for handling user authentication
 export function AuthContextProvider({children}){
-
+    // State for the current user
     const [user,setUser]=useState({})
-
-    function signUp(email,password){
-     createUserWithEmailAndPassword(auth,email,password)
-     setDoc(doc(db,'users',email),{
-        savedMovies:[]
-     })
+  
+    // Method for handling user sign up
+    async function signUp(email,password){
+      // Creating the user with email and password using Firebase auth
+      const result=await createUserWithEmailAndPassword(auth,email,password)
+      console.log(result)
+      // Creating a document for the user in Firestore with an empty savedMovies array
+      setDoc(doc(db,'users',email),{
+          savedMovies:[]
+       })
     }
-
-   function signIn(email,password){
-        return signInWithEmailAndPassword(auth,email,password)
-    
+  
+    // Method for handling user sign in
+    function signIn(email,password){
+          // Signing in the user with email and password using Firebase auth
+          return signInWithEmailAndPassword(auth,email,password)
     }
-
+  
+    // Method for handling user sign out
     function logOut(){
-        return signOut(auth)
+      // Signing out the user using Firebase auth
+      return signOut(auth)
     }
-
+  
+    // Listening for changes in the user's authentication state
     useEffect(()=>{
-        const unsubscribe=onAuthStateChanged(auth,(currentUser)=>{
-            setUser(currentUser)
-
-        })
-        return ()=>{
-            unsubscribe()
-        }
+      const unsubscribe=onAuthStateChanged(auth,(currentUser)=>{
+        setUser(currentUser)
+      })
+      // Unsubscribing from the authentication state changes when the component unmounts
+      return ()=>{
+          unsubscribe()
+      }
     })
-
+  
     return(
-        <AuthContext.Provider value={{signUp,logOut,signIn, user}}>
-            {children}
-        </AuthContext.Provider>
+      // Providing the authentication methods and user state through the AuthContext
+      <AuthContext.Provider value={{signUp,logOut,signIn, user}}>
+        {children}
+      </AuthContext.Provider>
     )
-}
-
-export function UserAuth(){
-    return useContext(AuthContext)
-}
+  }
+  
+  // Exporting the UserAuth hook for accessing the AuthContext
+  export function UserAuth(){
+      return useContext(AuthContext)
+  }

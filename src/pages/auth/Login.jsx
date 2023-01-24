@@ -2,29 +2,43 @@ import React,{useEffect, useState} from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import netflixImage from '../../assets/images/netflix.jpg'
 import {UserAuth} from '../../context/AuhtContext'
+
+// This component renders the login page, allowing users to sign in to the application
 function Login() {
-  const {signIn}=UserAuth()
-  const[email,setEmail]=useState('')
-  const[password,setPassword]=useState('')
-  const navigate=useNavigate()
-  const [error,setError]=useState('')
+//Retrieve the signIn method from the UserAuth context
+const {signIn}=UserAuth()
+// Use state to manage the email and password input fields
+const[email,setEmail]=useState('')
+const[password,setPassword]=useState('')
+// useNavigate allows you to programmatically navigate to a different route
+const navigate=useNavigate()
+// Use state to manage any error messages
+const [error,setError]=useState('')
 
-  useEffect(()=>{
- setError('')
-  },[email,password])
+// useEffect is used to reset error message when email or password changes
+useEffect(()=>{
+setError('')
+},[email,password])
 
-  const handleLogin=async(e)=>{
-    e.preventDefault()
-    setError('')
-    try{
-      await signIn(email,password)
-      navigate('/')
-    }
-    catch (error){
-      setError(error.message)
-    }
-  
-  }
+//Handles the login process when the form is submitted
+const handleLogin=async(e)=>{
+//prevent the page from refreshing
+e.preventDefault()
+//Reset any existing error messages
+setError('')
+try{
+//Call the signIn method from the context, passing in the email and password
+await signIn(email,password)
+//If login is successful, navigate the user to the home page
+navigate('/')
+}
+catch (error){
+//if login is unsuccessful, set the error state with the error message
+setError(error.message)
+return
+}
+
+}
   return (
     <>
     <div className="signup-container">

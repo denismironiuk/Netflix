@@ -32,17 +32,24 @@
     color: white;
     
 }
-.movie-title .like{
-   
 
-
-}
 .movie-title .like svg{
     position: absolute;
     top: 5%;
     left: 5%;
     font-size: 50px;
     color: red;
+    border: none;
+   
+    z-index: 777;
+    opacity: 1;
+}
+.movie-title .delete-movie svg{
+    position: absolute;
+    top: 5%;
+left: 90%;
+    font-size: 50px;
+   
     border: none;
    
     z-index: 777;

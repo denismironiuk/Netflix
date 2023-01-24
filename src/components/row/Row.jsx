@@ -6,22 +6,28 @@ import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs";
 
 const Movie=lazy(()=>import('./movie/Movie'))
 
+// Row component for displaying a row of movies
 function Row({ request, title }) {
+  // generates unique id 
   const id=useId()
+  // State for the list of movies
   const [movies, setMovies] = useState([]);
-  const [like, setLike] = useState(false);
 
+  // Fetching the movies from the passed in request URL
   useEffect(() => {
     axios.get(request).then((response) => {
       setMovies(response.data.results);
     });
   }, [request]);
+  // useRef for the slider container
   const slider = useRef();
+  // Method to slide the movies left
   const slideLeft = () => {
     slider.current.scrollLeft = slider.current.scrollLeft - 500;
   };
-  const slideRight = () => {
-    slider.current.scrollLeft = slider.current.scrollLeft + 500;
+  // Method to slide the movies right
+const slideRight = () => {
+  slider.current.scrollLeft = slider.current.scrollLeft + 500;
   };
 
   return (
